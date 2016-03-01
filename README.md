@@ -1,8 +1,8 @@
 Gank.io For Kotlin Android
 
-<img src="https://github.com/YeungKC/Gank.io-for-Kotlin-Android/blob/master/screenshots/1.png width= "340"/>
+<img src="https://raw.githubusercontent.com/YeungKC/Gank.io-for-Kotlin-Android/master/screenshots/1.png" width= "340"/>
 
-<img src="https://github.com/YeungKC/Gank.io-for-Kotlin-Android/blob/master/screenshots/2.png width= "340"/>
+<img src="https://raw.githubusercontent.com/YeungKC/Gank.io-for-Kotlin-Android/master/screenshots/2.png" width= "340"/>
 
 
 
@@ -28,11 +28,9 @@ Android 开发者大概学习几天就可以正式开发
 * 基于数据库 MVP 架构
 * Retrofit Okhttp Gson 配合使用
 
-
 ##使用要求
 
 * Android 4.1 +
-
 
 ## 参考项目
 
