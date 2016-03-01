@@ -1,0 +1,20 @@
+<resources>
+    <string name="app_name">Gank.io</string>
+    <string name="about">关于</string>
+    <string name="network_error">网络错误</string>
+    <string name="network_fail">连接失败</string>
+    <string name="have_cache">, 已载入缓存数据</string>
+    <string name="retry">重试</string>
+    <string name="via">via %1$s</string>
+    <string name="about_title">关于本项目</string>
+    <string name="about_content">
+        作者: YeungKC\n
+        编程语言: Kotlin\n
+        内容提供: Gank.io\n
+        参考项目: 干妹纸\n
+        项目知识点:\n\n
+            Kotlin 使用\n
+            基于数据库 MVP 架构\n
+            Retrofit Okhttp Gson 配合使用\n
+    </string>
+</resources>
