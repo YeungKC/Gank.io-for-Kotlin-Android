@@ -8,8 +8,10 @@ import android.support.v7.widget.Toolbar
 import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
+import com.antonioleiva.weatherapp.extensions.DelegatesExt
 import com.yeungkc.gank.io.R
 import com.yeungkc.gank.io.conf.DEFAULT_COUNT
+import com.yeungkc.gank.io.conf.FIRST
 import com.yeungkc.gank.io.extensions.moreLoading
 import com.yeungkc.gank.io.extensions.setOnItemClickListener
 import com.yeungkc.gank.io.model.bean.Result
@@ -23,6 +25,7 @@ import org.jetbrains.anko.startActivity as start
 class MainActivity : BaseActivity<MainPresenter>(), ToolbarManager, IMainView {
     override val mActivity: Activity = this
     override val mContext: Context = this
+    var first:Boolean by DelegatesExt.preference(mContext,FIRST,true)
 
     val LayoutManager = StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
     val mAdapter = GankAdapter()
@@ -46,6 +49,11 @@ class MainActivity : BaseActivity<MainPresenter>(), ToolbarManager, IMainView {
 
         rv_main_content.layoutManager = LayoutManager
         rv_main_content.adapter = mAdapter
+
+        if (first) {
+            Snackbar.make(rv_main_content, R.string.on_first_snackbar_text, Snackbar.LENGTH_LONG).show()
+            first = false
+        }
     }
 
     override fun initEvent() {
@@ -66,10 +74,6 @@ class MainActivity : BaseActivity<MainPresenter>(), ToolbarManager, IMainView {
 
         rv_main_content.setOnItemClickListener { recyclerView, position, view ->
             with(mResults[position]) {
-                //                startActivity(
-                //                        Intent(mContext, DetailActivity::class.java)
-                //                                .putExtra(DetailActivity.DATE, publishedAt))
-                //
                 start<DetailActivity>(DetailActivity.DATE to  publishedAt!!)
             }
         }
@@ -98,10 +102,6 @@ class MainActivity : BaseActivity<MainPresenter>(), ToolbarManager, IMainView {
 
     override fun onRequestComplete() {
         srl_main_refresh.isRefreshing = false
-    }
-
-    override fun onRequestSuccess() {
-        Snackbar.make(rv_main_content, R.string.on_request_success,Snackbar.LENGTH_LONG).show()
     }
 
     //  判断是否有缓存决定 view 显示方式
