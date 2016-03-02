@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">Gank.io</string>
     <string name="about">关于</string>
+    <string name="on_request_success">请求成功, 由于 api 没有提供图片长宽, 正常做法会导致瀑布流不稳定, 下载后自动填充, 请稍后</string>
     <string name="network_error">网络错误</string>
     <string name="network_fail">连接失败</string>
     <string name="have_cache">, 已载入缓存数据</string>

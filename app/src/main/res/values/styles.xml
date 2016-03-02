@@ -11,6 +11,8 @@
 
         <item name="colorBackground">@color/colorBackground</item>
         <item name="colorDivider">@color/colorDivider</item>
+
+        <item name="android:windowBackground">@color/colorBackground</item>
     </style>
 
     <style name="AppTheme.NoActionBar">

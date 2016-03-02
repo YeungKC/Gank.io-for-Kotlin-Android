@@ -1,17 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!--<LinearLayout -->
-<!--xmlns:android="http://schemas.android.com/apk/res/android"-->
-<!--android:layout_width="match_parent"-->
-<!--android:layout_height="match_parent"-->
-<!--android:background="@color/colorBackground"-->
-<!--android:orientation="vertical"-->
-<!--android:padding="8dp">-->
-
 <android.support.v4.widget.SwipeRefreshLayout
     android:id="@+id/srl_detail_refresh"
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:paddingBottom="48dp"
     >
 
     <android.support.v7.widget.RecyclerView
@@ -21,4 +14,3 @@
 
     </android.support.v7.widget.RecyclerView>
 </android.support.v4.widget.SwipeRefreshLayout>
-    <!--</LinearLayout>-->

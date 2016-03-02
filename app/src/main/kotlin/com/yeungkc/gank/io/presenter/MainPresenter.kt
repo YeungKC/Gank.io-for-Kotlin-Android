@@ -43,6 +43,10 @@ class MainPresenter(override val mView: IMainView) : BasePresenter<IMainView> {
 
         GankServer.instance.getFuli(page, count, object :
                 GankRequestCallBack<BaseResult<List<Result>>>(mView) {
+            override fun onRequestSuccess(responseBean: BaseResult<List<Result>>) {
+                mView.onRequestSuccess()
+            }
+
             override fun onRequestSuccessOnBG(responseBean: BaseResult<List<Result>>,
                                               ankoAsyncContext: AnkoAsyncContext<AnkoAsyncContext<Context>>) {
                 super.onRequestSuccessOnBG(responseBean, ankoAsyncContext)

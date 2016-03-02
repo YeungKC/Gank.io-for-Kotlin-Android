@@ -100,6 +100,10 @@ class MainActivity : BaseActivity<MainPresenter>(), ToolbarManager, IMainView {
         srl_main_refresh.isRefreshing = false
     }
 
+    override fun onRequestSuccess() {
+        Snackbar.make(rv_main_content, R.string.on_request_success,Snackbar.LENGTH_LONG).show()
+    }
+
     //  判断是否有缓存决定 view 显示方式
     override fun onRequestError(str: String, isHaveCache: Boolean) {
         var SbStr = str
