@@ -6,13 +6,11 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:textColorPrimary">@color/colorPrimaryText</item>
+        <item name="android:textColorSecondary">@color/colorSecondaryText</item>
 
-        <!--<item name="colorPrimaryLight">@color/colorPrimaryLight</item>-->
-        <!--<item name="colorPrimaryText">@color/colorPrimaryText</item>-->
-        <!--<item name="colorSecondaryText">@color/colorSecondaryText</item>-->
-        <!--<item name="colorText">@color/colorText</item>-->
-        <!--<item name="colorDivider">@color/colorDivider</item>-->
-
+        <item name="colorBackground">@color/colorBackground</item>
+        <item name="colorDivider">@color/colorDivider</item>
     </style>
 
     <style name="AppTheme.NoActionBar">

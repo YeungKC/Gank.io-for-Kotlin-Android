@@ -14,7 +14,8 @@
         参考项目: 干妹纸\n
         项目知识点:\n\n
             Kotlin 使用\n
-            基于数据库 MVP 架构\n
+            基于数据库 MVP 架构(由于 Retrofit 和 Realm 的 api 简易性, 没有特意做 model)\n
             Retrofit Okhttp Gson 配合使用\n
+            瀑布流的使用
     </string>
 </resources>

@@ -12,7 +12,6 @@ import com.yeungkc.gank.io.ui.adapter.DetailAdapter
 import com.yeungkc.gank.io.view.IDetailVIew
 import kotlinx.android.synthetic.main.activity_base.*
 import kotlinx.android.synthetic.main.activity_detail.*
-import kotlinx.android.synthetic.main.activity_main.*
 import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.properties.Delegates
@@ -90,7 +89,7 @@ class DetailActivity : BaseActivity<DetailPresenter>(), ToolbarManager, IDetailV
         if (isHaveCache) {
             SbStr = str + getString(R.string.have_cache)
         }
-        val make = Snackbar.make(rv_main_content, SbStr, Snackbar.LENGTH_LONG)
+        val make = Snackbar.make(rv_detail_content, SbStr, Snackbar.LENGTH_LONG)
 
         if (!isHaveCache)
             make.setAction(R.string.retry) { v ->

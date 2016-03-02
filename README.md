@@ -1,4 +1,4 @@
-Gank.io For Kotlin Android
+##Gank.io For Kotlin Android
 
 <img src="https://raw.githubusercontent.com/YeungKC/Gank.io-for-Kotlin-Android/master/screenshots/1.png" width= "340"/>
 
@@ -25,8 +25,9 @@ Android 开发者大概学习几天就可以正式开发
 ##项目知识点:
 
 * Kotlin 使用
-* 基于数据库 MVP 架构
+* 基于数据库 MVP 架构(由于 Retrofit 和 Realm 的 api 简易性, 没有特意做 model)
 * Retrofit Okhttp Gson 配合使用
+*  瀑布流的使用
 
 ##使用要求
 

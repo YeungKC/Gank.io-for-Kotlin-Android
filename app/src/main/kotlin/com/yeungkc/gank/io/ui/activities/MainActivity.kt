@@ -93,7 +93,7 @@ class MainActivity : BaseActivity<MainPresenter>(), ToolbarManager, IMainView {
     }
 
     override fun onPostRequestExecute() {
-        srl_main_refresh.isRefreshing = true
+        srl_main_refresh.post { srl_main_refresh.isRefreshing = true }
     }
 
     override fun onRequestComplete() {
@@ -126,24 +126,24 @@ class MainActivity : BaseActivity<MainPresenter>(), ToolbarManager, IMainView {
         })
     }
 
-        override fun onCreateOptionsMenu(menu: Menu): Boolean {
-            // Inflate the menu; this adds items to the action bar if it is present.
-            menuInflater.inflate(R.menu.menu_main, menu)
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        menuInflater.inflate(R.menu.menu_main, menu)
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        // Handle action bar item clicks here. The action bar will
+        // automatically handle clicks on the Home/Up button, so long
+        // as you specify a parent activity in AndroidManifest.xml.
+        val id = item.itemId
+
+        //noinspection SimplifiableIfStatement
+        if (id == R.id.action_about) {
+            start<AboutActivity>()
             return true
         }
 
-        override fun onOptionsItemSelected(item: MenuItem): Boolean {
-            // Handle action bar item clicks here. The action bar will
-            // automatically handle clicks on the Home/Up button, so long
-            // as you specify a parent activity in AndroidManifest.xml.
-            val id = item.itemId
-
-            //noinspection SimplifiableIfStatement
-            if (id == R.id.action_about) {
-                start<AboutActivity>()
-                return true
-            }
-
-            return super.onOptionsItemSelected(item)
-        }
+        return super.onOptionsItemSelected(item)
+    }
 }
