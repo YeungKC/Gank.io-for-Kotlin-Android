@@ -15,8 +15,8 @@
                 <item name="android:windowBackground">@color/colorBackground</item>
 
                 <!-- Status Bar -->
-                <item name="android:windowTranslucentStatus">true</item>
+                <!--<item name="android:windowTranslucentStatus">true</item>-->
                 <!-- Navigation Bar -->
-                <item name="android:windowTranslucentNavigation">true</item>
+                <!--<item name="android:windowTranslucentNavigation">true</item>-->
         </style>
 </resources>
