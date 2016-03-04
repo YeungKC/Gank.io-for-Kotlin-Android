@@ -2,9 +2,19 @@
 
 求深圳地区 Android 开发工作~
 
-<img src="https://raw.githubusercontent.com/YeungKC/Gank.io-for-Kotlin-Android/master/screenshots/screenshots_1.jpg" width= "340"/>
+<img src="https://raw.githubusercontent.com/YeungKC/Gank.io-for-Kotlin-Android/master/screenshots/screenshots_5.0_1.jpg" width= "340"/>
 
-<img src="https://raw.githubusercontent.com/YeungKC/Gank.io-for-Kotlin-Android/master/screenshots/screenshots_2.jpg" width= "340"/>
+<img src="https://raw.githubusercontent.com/YeungKC/Gank.io-for-Kotlin-Android/master/screenshots/screenshots_5.0_1.jpg" width= "340"/>
+
+
+
+###项目问题
+
+更新了 4.4 的 Status Bar 和 Navigation Bar透明, 并且修复 toolbar 不会随着 recyclerview 滑动而收缩的 bug, 5.0 以上我也想做到同样效果, 但总有有问题, 如果有思路可以跟我说~
+
+<img src="https://raw.githubusercontent.com/YeungKC/Gank.io-for-Kotlin-Android/master/screenshots/screenshot_4.4_1.jpg" width= "340"/>
+
+<img src="https://raw.githubusercontent.com/YeungKC/Gank.io-for-Kotlin-Android/master/screenshots/screenshot_4.4.2_jpg" width= "340"/>
 
 
 
