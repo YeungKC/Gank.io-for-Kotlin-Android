@@ -25,7 +25,7 @@ import org.jetbrains.anko.startActivity as start
 class MainActivity : BaseActivity<MainPresenter>(), ToolbarManager, IMainView {
     override val mActivity: Activity = this
     override val mContext: Context = this
-    var first:Boolean by DelegatesExt.preference(mContext,FIRST,true)
+    var first: Boolean by DelegatesExt.preference(mContext, FIRST, true)
 
     val LayoutManager = StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
     val mAdapter = GankAdapter()
@@ -57,33 +57,10 @@ class MainActivity : BaseActivity<MainPresenter>(), ToolbarManager, IMainView {
     }
 
     override fun initEvent() {
-        // 双击 toolbar 返回顶部, 判断当前位置, 超过 50 立即返回忽略动   画效果
-        enableDoubleClickToEvent {
-            val LastPositions = LayoutManager.findLastVisibleItemPositions(null)
-
-            if (Math.max(LastPositions[0], LastPositions[1]) > 50)
-                LayoutManager.scrollToPositionWithOffset(0, 0)
-            else
-                rv_main_content.smoothScrollToPosition(0)
-        }
-
-        srl_main_refresh.setOnRefreshListener {
-            page = 1
-            mPresenter.getFuli(page)
-        }
-
-        rv_main_content.setOnItemClickListener { recyclerView, position, view ->
-            with(mResults[position]) {
-                start<DetailActivity>(DetailActivity.DATE to  publishedAt!!)
-            }
-        }
-
-        // 加载更多
-        rv_main_content.moreLoading { position ->
-            Log.v(javaClass.simpleName, "position:$position :: itemCount:${mAdapter.itemCount} :: totalCount:$totalCount")
-            if (position + 1 == totalCount)
-                getFuli(++page)
-        }
+        doubleClickToTop()
+        refresh()
+        itemClick()
+        loadMore()
     }
 
     override fun initData() {
@@ -101,7 +78,7 @@ class MainActivity : BaseActivity<MainPresenter>(), ToolbarManager, IMainView {
     }
 
     override fun onRequestComplete() {
-        srl_main_refresh.isRefreshing = false
+        srl_main_refresh.post { srl_main_refresh.isRefreshing = false }
     }
 
     //  判断是否有缓存决定 view 显示方式
@@ -128,6 +105,41 @@ class MainActivity : BaseActivity<MainPresenter>(), ToolbarManager, IMainView {
         mAdapter.replaceWith(results.let {
             if (it.size < totalCount) it else it.subList(0, totalCount)
         })
+    }
+
+    private fun itemClick() {
+        rv_main_content.setOnItemClickListener { recyclerView, position, view ->
+            with(mResults[position]) {
+                start<DetailActivity>(DetailActivity.DATE to  publishedAt!!)
+            }
+        }
+    }
+
+    private fun refresh() {
+        srl_main_refresh.setOnRefreshListener {
+            page = 1
+            mPresenter.getFuli(page)
+        }
+    }
+
+    private fun doubleClickToTop() {
+        // 双击 toolbar 返回顶部, 判断当前位置, 超过 50 立即返回忽略动   画效果
+        enableDoubleClickToEvent {
+            val lastPositions = LayoutManager.findLastVisibleItemPositions(null)
+
+            if (Math.max(lastPositions[0], lastPositions[1]) > 50)
+                LayoutManager.scrollToPositionWithOffset(0, 0)
+            else
+                rv_main_content.smoothScrollToPosition(0)
+        }
+    }
+
+    private fun loadMore() {
+        rv_main_content.moreLoading { position ->
+            Log.v(javaClass.simpleName, "position:$position :: itemCount:${mAdapter.itemCount} :: totalCount:$totalCount")
+            if (position + 1 == totalCount)
+                getFuli(++page)
+        }
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {

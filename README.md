@@ -8,14 +8,8 @@
 
 
 
-###项目问题
-
-更新了 4.4 的 Status Bar 和 Navigation Bar透明, 并且修复 toolbar 不会随着 recyclerview 滑动而收缩的 bug, 5.0 以上我也想做到同样效果, 或者是 material design 的 Status Bar 不收缩有颜色, 但总有有问题, 如果有思路可以跟我说~
-
-<img src="https://raw.githubusercontent.com/YeungKC/Gank.io-for-Kotlin-Android/master/screenshots/screenshot_4.4_1.png" width= "340"/>
-
-<img src="https://raw.githubusercontent.com/YeungKC/Gank.io-for-Kotlin-Android/master/screenshots/screenshot_4.4_2.png" width= "340"/>
-
+### 项目更新
+实现 4.4 and 5.0 以上 Status Bar(5.0 以上跟随 material design) 和 Navigation Bar 透明, 增加用户内容可视区域
 
 
 ##项目介绍

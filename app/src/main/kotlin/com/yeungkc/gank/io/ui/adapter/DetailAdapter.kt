@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout
 import com.yeungkc.gank.io.R
+import com.yeungkc.gank.io.extensions.dpToPx
 import com.yeungkc.gank.io.extensions.getNavigationBarHeight
 import com.yeungkc.gank.io.model.bean.Result
 import com.yeungkc.gank.io.ui.view_holder.ItemDetaitlViewHolder
@@ -50,9 +51,10 @@ class DetailAdapter(val mContext: Context) : ArrayRecyclerAdapter<Result, ItemDe
         }
 
         // 设置透明 Navigation Bar 之后需要适当设置 margin, 不然内容就跟 Navigation Bar 重叠
+        // 有些机型返回的都是 0 决定写死
         val layoutParams = holder.vBottomDivider.layoutParams as LinearLayout.LayoutParams
         if (isLast) {
-            layoutParams.bottomMargin = mNavigationBarHeight
+            layoutParams.bottomMargin = 56.dpToPx(mContext)
         } else {
             layoutParams.bottomMargin = 0
         }

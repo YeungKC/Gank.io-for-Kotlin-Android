@@ -32,9 +32,9 @@ class MainPresenter(override val mView: IMainView) : BasePresenter<IMainView> {
 
     val mRealm: Realm = Realm.getDefaultInstance()
     val mRealmResults =
-        mRealm.where(Result::class.java)
-                .equalTo("type", "福利")
-                .findAllSorted("publishedAt", Sort.DESCENDING)
+            mRealm.where(Result::class.java)
+                    .equalTo("type", "福利")
+                    .findAllSorted("publishedAt", Sort.DESCENDING)
 
     val mOnChangeListener = RealmChangeListener { mView.onChange(mRealmResults) }
     val mContext = mView.mContext
