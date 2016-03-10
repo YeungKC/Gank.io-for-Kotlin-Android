@@ -25,7 +25,7 @@ abstract class ArrayRecyclerAdapter<E, VH : RecyclerView.ViewHolder>() : Recycle
     override fun add(index: Int, element: E) {
         synchronized (lock) {
             list.add(index, element)
-            notifyItemInserted(index)
+            if (index == 0) notifyDataSetChanged() else notifyItemInserted(index)
         }
     }
 
@@ -33,7 +33,7 @@ abstract class ArrayRecyclerAdapter<E, VH : RecyclerView.ViewHolder>() : Recycle
         synchronized (lock) {
             val lastIndex = list.size
             if (list.add(element)) {
-                notifyItemInserted(lastIndex)
+                if (lastIndex == 0) notifyDataSetChanged() else notifyItemInserted(lastIndex)
                 return true
             } else {
                 return false
@@ -45,7 +45,7 @@ abstract class ArrayRecyclerAdapter<E, VH : RecyclerView.ViewHolder>() : Recycle
     override fun addAll(index: Int, elements: Collection<E>): Boolean {
         synchronized (lock) {
             if (list.addAll(index, elements)) {
-                notifyItemRangeInserted(index, elements.size)
+                if (index == 0) notifyDataSetChanged() else notifyItemRangeInserted(index, elements.size)
                 return true
             } else {
                 return false
@@ -57,7 +57,7 @@ abstract class ArrayRecyclerAdapter<E, VH : RecyclerView.ViewHolder>() : Recycle
         synchronized (lock) {
             val lastIndex = list.size
             if (list.addAll(elements)) {
-                notifyItemRangeInserted(lastIndex, elements.size)
+                if (lastIndex == 0) notifyDataSetChanged() else notifyItemRangeInserted(lastIndex, elements.size)
                 return true
             } else {
                 return false
