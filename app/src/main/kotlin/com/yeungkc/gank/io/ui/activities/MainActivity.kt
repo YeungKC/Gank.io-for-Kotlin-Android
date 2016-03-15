@@ -2,7 +2,6 @@ package com.yeungkc.gank.io.ui.activities
 
 import android.app.Activity
 import android.content.Context
-import android.support.design.widget.Snackbar
 import android.support.v7.widget.StaggeredGridLayoutManager
 import android.support.v7.widget.Toolbar
 import android.util.Log
@@ -20,6 +19,7 @@ import com.yeungkc.gank.io.ui.adapter.GankAdapter
 import com.yeungkc.gank.io.view.IMainView
 import kotlinx.android.synthetic.main.activity_base.*
 import kotlinx.android.synthetic.main.activity_main.*
+import org.jetbrains.anko.toast
 import org.jetbrains.anko.startActivity as start
 
 class MainActivity : BaseActivity<MainPresenter>(), ToolbarManager, IMainView {
@@ -51,7 +51,8 @@ class MainActivity : BaseActivity<MainPresenter>(), ToolbarManager, IMainView {
         rv_main_content.adapter = mAdapter
 
         if (first) {
-            Snackbar.make(rv_main_content, R.string.on_first_snackbar_text, Snackbar.LENGTH_LONG).show()
+//            Snackbar.make(rv_main_content, R.string.on_first_snackbar_text, Snackbar.LENGTH_LONG).show()
+            toast(R.string.on_first_snackbar_text)
             first = false
         }
     }
@@ -89,14 +90,15 @@ class MainActivity : BaseActivity<MainPresenter>(), ToolbarManager, IMainView {
         } else {
             --page
         }
-        val make = Snackbar.make(rv_main_content, SbStr, Snackbar.LENGTH_LONG)
-
-        if (!isHaveCache)
-            make.setAction(R.string.retry) { v ->
-                getFuli(++page)
-            }
-
-        make.show()
+//        val make = Snackbar.make(rv_main_content, SbStr, Snackbar.LENGTH_LONG)
+//
+//        if (!isHaveCache)
+//            make.setAction(R.string.retry) { v ->
+//                getFuli(++page)
+//            }
+//
+//        make.show()
+        toast(SbStr)
     }
 
     // 最终 rv itemCount 是由 totalCount 决定, 即 page * DEFAULT_COUNT

@@ -2,7 +2,6 @@ package com.yeungkc.gank.io.ui.activities
 
 import android.app.Activity
 import android.content.Context
-import android.support.design.widget.Snackbar
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.Toolbar
 import com.yeungkc.gank.io.R
@@ -12,6 +11,7 @@ import com.yeungkc.gank.io.ui.adapter.DetailAdapter
 import com.yeungkc.gank.io.view.IDetailVIew
 import kotlinx.android.synthetic.main.activity_base.*
 import kotlinx.android.synthetic.main.activity_detail.*
+import org.jetbrains.anko.toast
 import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.properties.Delegates
@@ -89,14 +89,15 @@ class DetailActivity : BaseActivity<DetailPresenter>(), ToolbarManager, IDetailV
         if (isHaveCache) {
             SbStr = str + getString(R.string.have_cache)
         }
-        val make = Snackbar.make(rv_detail_content, SbStr, Snackbar.LENGTH_LONG)
-
-        if (!isHaveCache)
-            make.setAction(R.string.retry) { v ->
-                getDetail()
-            }
-
-        make.show()
+//        val make = Snackbar.make(rv_detail_content, SbStr, Snackbar.LENGTH_LONG)
+//
+//        if (!isHaveCache)
+//            make.setAction(R.string.retry) { v ->
+//                getDetail()
+//            }
+//
+//        make.show()
+        toast(SbStr)
     }
 
     fun getDetail() {

@@ -22,7 +22,6 @@
             android:titleTextColor="?attr/colorText"
             app:layout_scrollFlags="scroll|enterAlways"
             app:popupTheme="@style/AppTheme.PopupOverlay"
-            app:subtitleTextColor="@color/colorSecondaryText"
             />
     </android.support.design.widget.AppBarLayout>
 
