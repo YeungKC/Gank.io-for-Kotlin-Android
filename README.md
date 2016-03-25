@@ -1,10 +1,9 @@
 ##Gank.io For Kotlin Android
 
-求深圳地区 Android 开发工作~
 
-<img src="https://raw.githubusercontent.com/YeungKC/Gank.io-for-Kotlin-Android/master/screenshots/screenshots_5.0_1.jpg" width= "340"/>
+<img src="https://raw.githubusercontent.com/YeungKC/Gank.io-for-Kotlin-Android/master/screenshots/screenshots_5.0_1.png" width= "340"/>
 
-<img src="https://raw.githubusercontent.com/YeungKC/Gank.io-for-Kotlin-Android/master/screenshots/screenshots_5.0_2.jpg" width= "340"/>
+<img src="https://raw.githubusercontent.com/YeungKC/Gank.io-for-Kotlin-Android/master/screenshots/screenshots_5.0_2.png" width= "340"/>
 
 
 
