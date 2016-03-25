@@ -45,8 +45,15 @@ class MainPresenter(override val mView: IMainView) : BasePresenter<IMainView> {
                 GankRequestCallBack<BaseResult<List<Result>>>(mView) {
             override fun onRequestSuccessOnBG(responseBean: BaseResult<List<Result>>,
                                               ankoAsyncContext: AnkoAsyncContext<AnkoAsyncContext<Context>>) {
-                super.onRequestSuccessOnBG(responseBean, ankoAsyncContext)
                 decodePicAndSaveDb(responseBean.results)
+                super.onRequestSuccessOnBG(responseBean, ankoAsyncContext)
+            }
+
+            override fun onRequestSuccess(responseBean: BaseResult<List<Result>>) {
+                mView.onRequestComplete()
+            }
+
+            override fun onRequestComplete() {
             }
 
             override fun onRequestFail(responseBean: BaseResult<List<Result>>) =
@@ -64,6 +71,8 @@ class MainPresenter(override val mView: IMainView) : BasePresenter<IMainView> {
                 val isHaveCache = mRealmResults.size >= page * DEFAULT_COUNT
                 mView.onRequestError(errorMsg, isHaveCache)
                 if (isHaveCache) mView.onChange(mRealmResults)
+
+                mView.onRequestComplete()
             }
         })
     }
