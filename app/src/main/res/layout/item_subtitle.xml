@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:tools="http://schemas.android.com/tools"
+	>
+
+	<data>
+
+		<variable
+			name="subtitle"
+			type="String"/>
+	</data>
+
+	<LinearLayout
+		android:id="@+id/constraintLayout"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:background="?attr/colorPrimaryLight"
+		android:foreground="?attr/selectableItemBackground"
+		android:gravity="center_vertical"
+		android:orientation="horizontal"
+		android:paddingStart="16dp"
+		>
+
+		<android.support.v7.widget.AppCompatImageView
+			android:id="@+id/icon"
+			android:layout_width="20dp"
+			android:layout_height="20dp"
+			android:layout_marginEnd="16dp"
+			tools:src="@drawable/ic_android"
+			/>
+
+		<android.support.v7.widget.AppCompatTextView
+			android:layout_width="0dp"
+			android:layout_height="wrap_content"
+			android:layout_weight="1"
+			android:paddingBottom="16dp"
+			android:paddingTop="16dp"
+			android:text="@{subtitle}"
+			android:textAppearance="@style/TextAppearance.AppCompat.Light.SearchResult.Subtitle"
+			tools:text="@string/android"/>
+
+		<android.support.v7.widget.AppCompatButton
+			style="?android:attr/borderlessButtonStyle"
+			android:layout_width="wrap_content"
+			android:clickable="true"
+			android:layout_height="wrap_content"
+			android:textColor="?android:attr/textColorTertiary"
+			android:text="MORE"/>
+	</LinearLayout>
+</layout>

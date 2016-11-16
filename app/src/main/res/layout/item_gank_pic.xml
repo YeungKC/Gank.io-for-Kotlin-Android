@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.yeungkc.gank.io.ui.custom_view.RatioFrameLayout
+	android:id="@+id/fl_item"
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="match_parent"
+	android:layout_height="wrap_content"
+	android:stateListAnimator="@animator/raise"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
+	>
+
+	<android.support.v7.widget.AppCompatImageView
+		android:id="@+id/iv_item"
+		xmlns:android="http://schemas.android.com/apk/res/android"
+		android:layout_width="match_parent"
+		android:layout_height="match_parent"
+		/>
+
+	<android.support.v7.widget.AppCompatTextView
+		android:id="@+id/tv_item"
+		xmlns:android="http://schemas.android.com/apk/res/android"
+		android:layout_width="match_parent"
+		android:layout_height="match_parent"
+		android:background="#22000000"
+		android:gravity="center"
+		android:textAlignment="center"
+		android:duplicateParentState="true"
+		android:textColor="?android:attr/textColorPrimaryInverse"
+		android:stateListAnimator="@animator/transparent"
+		android:textSize="18sp"/>
+</com.yeungkc.gank.io.ui.custom_view.RatioFrameLayout>
+

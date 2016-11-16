@@ -52,16 +52,6 @@ class HttpLogInterceptor : Interceptor {
         return transformerData(response, json)
     }
 
-    //    private void addParams(String interParam, FormBody.Builder newFormBody) {
-    //        String busiSecKey = BuildConfig.BUSI_SEC_KEY;
-    //        String timeStamp = new SimpleDateFormat("yyyyMMddHHmmss", Locale.getDefault()).format(new Date());
-    //        String inbuf = interParam + busiSecKey + timeStamp;
-    //        String md5ofStr = Md5Util.getMD5Code(inbuf);
-    //
-    //        newFormBody.add("busiSecKey", busiSecKey);
-    //        newFormBody.add("timeStamp", timeStamp);
-    //        newFormBody.add("hmac", md5ofStr);
-    //    }
 
     @Throws(UnsupportedEncodingException::class)
     private fun printRequestLog(build: FormBody) {
@@ -76,20 +66,6 @@ class HttpLogInterceptor : Interceptor {
         } catch (e: Exception) {
             Logger.e("Json serialization failure\n\n" + json)
         }
-
-        //        StringBuilder log = new StringBuilder();
-        //        for (int i = 1; i < build.size(); i++) {
-        //            String value = build.encodedValue(i);
-        //            String decodeValue = URLDecoder.decode(value, "UTF-8");
-        //            log.append("key   : ")
-        //                    .append(build.encodedName(i))
-        //                    .append("\n")
-        //                    .append("value : ")
-        //                    .append(decodeValue)
-        //                    .append("\n");
-        //        }
-        //
-        //        Logger.d(log.toString());
     }
 
     @Throws(IOException::class)

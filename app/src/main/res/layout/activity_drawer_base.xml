@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
+	xmlns:tools="http://schemas.android.com/tools">
+
+	<android.support.v4.widget.DrawerLayout
+		android:id="@+id/drawer_layout"
+		android:layout_width="match_parent"
+		android:layout_height="match_parent"
+		tools:openDrawer="end">
+
+		<FrameLayout
+			android:layout_width="match_parent"
+			android:layout_height="match_parent">
+
+			<FrameLayout
+				android:id="@+id/fl_base_content"
+				android:layout_width="match_parent"
+				android:layout_height="match_parent"
+				/>
+
+				<android.support.v7.widget.Toolbar
+					android:id="@+id/tl_base_toolbar"
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content"
+					android:background="?attr/toolBarColor"
+					android:minHeight="?attr/actionBarSize"
+					android:theme="@style/AppTheme.AppBarOverlay"
+					app:popupTheme="@style/AppTheme.PopupOverlay"
+				    android:elevation="8dp"
+					/>
+		</FrameLayout>
+
+		<android.support.design.widget.NavigationView
+			android:id="@+id/nav_view"
+			android:layout_width="wrap_content"
+			android:layout_height="match_parent"
+			android:layout_gravity="end"
+			app:itemIconTint="@drawable/nav_menu_color"
+			app:itemTextColor="@drawable/nav_menu_color"
+			app:menu="@menu/main_drawer"
+			/>
+	</android.support.v4.widget.DrawerLayout>
+</layout>
+
