@@ -1,9 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <attr name="colorPrimaryLight" format="color|reference"/>
-    <attr name="colorPrimaryText" format="color|reference"/>
-    <attr name="colorSecondaryText" format="color|reference"/>
-    <attr name="colorDivider" format="color|reference"/>
-    <attr name="colorText" format="color|reference"/>
-    <attr name="colorBackground" format="color|reference"/>
+	<attr name="colorDivider" format="color|reference"/>
+	<attr name="colorPrimaryLight" format="color|reference"/>
+	<attr name="toolBarColor" format="color|reference"/>
 </resources>

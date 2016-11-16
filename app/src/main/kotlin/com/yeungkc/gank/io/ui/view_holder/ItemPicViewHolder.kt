@@ -1,34 +1,39 @@
 package com.yeungkc.gank.io.ui.view_holder
 
-import android.support.v7.widget.RecyclerView
-import android.view.View
+import android.graphics.drawable.ColorDrawable
+import android.view.LayoutInflater
+import android.view.ViewGroup
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.yeungkc.gank.io.R
+import com.yeungkc.gank.io.model.bean.AutoBean
 import com.yeungkc.gank.io.model.bean.Result
-import com.yeungkc.gank.io.ui.widget.RatioImageView
-import org.jetbrains.anko.find
+import com.yeungkc.gank.io.ui.glide.module.CustomImageSizeModelGankStudio
+import kotlinx.android.synthetic.main.item_gank_pic.view.*
+import java.text.SimpleDateFormat
 
-/**
- * @项目名: kc
- * @包名: gank.io.kc.ui.view_holder
- * @作者: YeungKC
- *
- * @描述：TODO
- */
-class ItemPicViewHolder(val view: View) : RecyclerView.ViewHolder(view) {
-    val iv_item: RatioImageView by lazy { itemView.find<RatioImageView>(R.id.iv_item) }
+class ItemPicViewHolder(val parent: ViewGroup) : BaseViewHolder<AutoBean>(LayoutInflater.from(parent.context).inflate(R.layout.item_gank_pic, parent, false)) {
+    override fun bind(data: AutoBean) {
+        if (data !is Result) return
 
-    fun bind( results: Result) {
-        with(results) {
-            Glide.with(iv_item.context)
-                    .load(url)
-                    .diskCacheStrategy(DiskCacheStrategy.ALL)
-                    .into(iv_item)
+        data.run {
+            itemView.fl_item.setOriginalSize(width, height)
 
-            if (width > 0 && height > 0) {
-                iv_item.setOriginalSize(width, height)
+            if (url != itemView.tag) {
+                itemView.tag = url
+                Glide.with(itemView.iv_item.context)
+                        .load(CustomImageSizeModelGankStudio(url))
+                        .placeholder(ColorDrawable(shotLoadingPlaceholderColor))
+                        .diskCacheStrategy(DiskCacheStrategy.ALL)
+                        .into(itemView.iv_item)
+            }
+
+            itemView.tv_item.text = SimpleDateFormat("yy\nMM/dd").format(publishedAt)
+
+            itemView.setOnClickListener {
+//                context.startActivity<DetailActivity>(DetailActivity.DATE to data.publishedAt)
             }
         }
     }
 }
+

@@ -1,15 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <color name="colorPrimary">#607D8B</color>
-    <color name="colorPrimaryDark">#455A64</color>
-    <color name="colorAccent">#607D8B</color>
+	<color name="colorPrimary">#383838</color>
+	<color name="toolBarColor">#d9383838</color>
+	<color name="colorPrimaryDark">#303030</color>
+	<color name="colorPrimaryLight">#404040</color>
+	<color name="colorAccent">#69F0AE</color>
 
-    <color name="colorBackground">#EDEDED</color>
+	<color name="colorBackground">@color/colorPrimary</color>
+	<color name="progressBackgroundColor">@color/colorPrimaryDark</color>
 
-    <color name="colorPrimaryLight">#CFD8DC</color>
-    <color name="colorPrimaryText">#212121</color>
-    <color name="colorSecondaryText">#727272</color>
-    <color name="colorDivider">#B6B6B6</color>
-    <color name="colorText">#FFFFFF</color>
+	<color name="colorPrimaryText">#ffffff</color>
+	<color name="colorSecondaryText">#b2ffffff</color>
+	<color name="textColorTertiary">#7fffffff</color>
+	<color name="colorDivider">#35ffffff</color>
+
+	<!--<color name="hintDisabledDark">#43000000</color> &lt;!&ndash; 26% black &ndash;&gt;-->
+
+	<color name="statusBarColor">@color/colorPrimaryDark</color>
+	<color name="navigationBarColor">#000</color>
+
+	<array name="loadingPlaceholdersDark">
+		<item>#ff191919</item>
+		<item>#ff212121</item>
+		<item>#ff232323</item>
+	</array>
 </resources>

@@ -1,37 +1,51 @@
 package com.yeungkc.gank.io.ui.adapter
 
-import android.view.LayoutInflater
 import android.view.ViewGroup
-import com.yeungkc.gank.io.R
+import com.yeungkc.gank.io.model.bean.AutoBean
 import com.yeungkc.gank.io.model.bean.Result
+import com.yeungkc.gank.io.model.bean.Result.Companion.GANK_PIC_TYPE
+import com.yeungkc.gank.io.model.bean.Result.Companion.GANK_TYPE
+import com.yeungkc.gank.io.model.bean.Subtitle.Companion.GANK_SUBTITLE_TYPE
+import com.yeungkc.gank.io.ui.view_holder.BaseViewHolder
+import com.yeungkc.gank.io.ui.view_holder.ItemGankViewHolder
 import com.yeungkc.gank.io.ui.view_holder.ItemPicViewHolder
-import com.yeungkc.gank.io.ui.widget.ArrayRecyclerAdapter
+import com.yeungkc.gank.io.ui.view_holder.ItemSubtitleViewHolder
 
 
-/**
- * Created by YeungKC on 16/2/22.
- *
- * @项目名: Kotlin Demo
- * @包名: kotlindemo.view.adapter
- * @作者: YeungKC
- *
- * @描述：TODO
- */
-class GankAdapter() : ArrayRecyclerAdapter<Result, ItemPicViewHolder>() {
-    init{
+class GankAdapter(placeholderColors: IntArray = IntArray(0)) : LoadingAdapter<AutoBean>() {
+    val shotLoadingPlaceholderColors: IntArray
+
+    init {
         setHasStableIds(true)
+
+        shotLoadingPlaceholderColors = placeholderColors
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ItemPicViewHolder? {
-        return ItemPicViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.item_pic, parent, false))
+    override fun onCreateExViewHolder(parent: ViewGroup, viewType: Int): BaseViewHolder<AutoBean> {
+        when (viewType) {
+            GANK_SUBTITLE_TYPE -> return ItemSubtitleViewHolder(parent)
+            GANK_PIC_TYPE -> return ItemPicViewHolder(parent)
+            else -> return ItemGankViewHolder(parent)
+        }
     }
 
-    override fun getItemId(position: Int): Long {
-        return get(position).url!!.hashCode().toLong()
+    override fun onBindExViewHolder(holder: BaseViewHolder<AutoBean>, position: Int) {
+        val get = get(position)
+        if (get is Result && shotLoadingPlaceholderColors.isNotEmpty())
+            get.shotLoadingPlaceholderColor = shotLoadingPlaceholderColors[position % shotLoadingPlaceholderColors.size]
+        super.onBindExViewHolder(holder, position)
     }
 
-    override fun onBindViewHolder(viewHolder: ItemPicViewHolder, position: Int) {
-        viewHolder.bind(get(position))
+    override fun getExItemViewType(position: Int): Int {
+        return when (get(position).itemType) {
+            GANK_SUBTITLE_TYPE -> GANK_SUBTITLE_TYPE
+            GANK_PIC_TYPE -> GANK_PIC_TYPE
+            else -> GANK_TYPE
+        }
+    }
+
+    override fun getExItemId(position: Int): Long {
+        return get(position).itemId
     }
 }
 
