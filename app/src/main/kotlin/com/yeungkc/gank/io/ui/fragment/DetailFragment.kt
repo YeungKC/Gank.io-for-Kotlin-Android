@@ -5,6 +5,7 @@ import android.support.v7.widget.LinearLayoutManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.yeungkc.gank.io.CustomApplication
 import com.yeungkc.gank.io.R
 import com.yeungkc.gank.io.contract.DetailContract
 import com.yeungkc.gank.io.databinding.FragmentGankBinding
@@ -41,7 +42,10 @@ class DetailFragment : BaseFragment(), IScrollFragment, DetailContract.DetailVie
     }
 
     lateinit var binding: FragmentGankBinding
-    val layoutManager by lazy { LinearLayoutManager(context) }
+    val layoutManager by lazy {
+        LinearLayoutManager(context)
+                .apply { recycleChildrenOnDetach = true }
+    }
     val gankAdapter by lazy { GankAdapter() }
     val toolbarManager: IToolbarManager?
         get() {
@@ -81,6 +85,7 @@ class DetailFragment : BaseFragment(), IScrollFragment, DetailContract.DetailVie
 
         setContentPadding()
 
+        binding.rvContent.recycledViewPool = CustomApplication.recycledViewPool
         binding.rvContent.layoutManager = layoutManager
         binding.rvContent.itemAnimator = SlideInItemAnimator()
         binding.rvContent.adapter = gankAdapter
@@ -99,7 +104,7 @@ class DetailFragment : BaseFragment(), IScrollFragment, DetailContract.DetailVie
         binding.rvContent.onScrollShowHideAppBar(
                 { toolbarManager?.hideToolBar() },
                 { toolbarManager?.showToolBar() },
-                {scrollOffset = it}
+                { scrollOffset = it }
         )
     }
 

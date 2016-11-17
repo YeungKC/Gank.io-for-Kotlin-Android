@@ -7,6 +7,7 @@ import android.support.v7.widget.StaggeredGridLayoutManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.yeungkc.gank.io.CustomApplication
 import com.yeungkc.gank.io.R
 import com.yeungkc.gank.io.contract.GankContract
 import com.yeungkc.gank.io.databinding.FragmentGankBinding
@@ -91,12 +92,13 @@ class GankFragment : BaseFragment(), IScrollFragment, GankContract.GankView {
     }
 
     lateinit var presenter: GankContract.GankPresenter
+    val isFuLi by lazy {  categorical == "福利" }
     val layoutManager by lazy<RecyclerView.LayoutManager> {
-        if (categorical == "福利") {
+        if (isFuLi) {
             StaggeredGridLayoutManager(
                     resources.getInteger(R.integer.spanCount), StaggeredGridLayoutManager.VERTICAL)
         } else {
-            LinearLayoutManager(context)
+            LinearLayoutManager(context).apply { recycleChildrenOnDetach = true }
         }
     }
     val placeholderColors: IntArray by lazy { resources.getIntArray(R.array.loadingPlaceholdersDark) }
@@ -134,6 +136,9 @@ class GankFragment : BaseFragment(), IScrollFragment, GankContract.GankView {
 
         setContentPadding()
 
+        if (!isFuLi) {
+            binding.rvContent.recycledViewPool = CustomApplication.recycledViewPool
+        }
         binding.rvContent.layoutManager = layoutManager
         binding.rvContent.itemAnimator = SlideInItemAnimator()
         binding.rvContent.adapter = gankAdapter
