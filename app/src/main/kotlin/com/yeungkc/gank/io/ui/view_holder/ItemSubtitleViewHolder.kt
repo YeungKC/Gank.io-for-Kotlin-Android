@@ -1,6 +1,5 @@
 package com.yeungkc.gank.io.ui.view_holder
 
-import android.support.graphics.drawable.AnimatedVectorDrawableCompat
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import com.yeungkc.gank.io.R
@@ -18,7 +17,7 @@ class ItemSubtitleViewHolder(parent: ViewGroup) : BaseViewHolder<AutoBean>(Layou
 
     override fun bind(data: AutoBean) {
         if (data !is Subtitle) return
-        val icon: AnimatedVectorDrawableCompat? = AnimatedVectorDrawableCompat.create(context, data.getIcon(context))
+        val icon = context.resources.getDrawable(data.getIcon(context))
         bind.icon.setImageDrawable(icon)
         bind.subtitle = data.subTitle
         bind.executePendingBindings()
