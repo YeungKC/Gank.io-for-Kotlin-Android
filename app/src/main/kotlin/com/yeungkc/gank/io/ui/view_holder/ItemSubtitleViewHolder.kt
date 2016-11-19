@@ -8,6 +8,7 @@ import com.yeungkc.gank.io.databinding.ItemSubtitleBinding
 import com.yeungkc.gank.io.model.bean.AutoBean
 import com.yeungkc.gank.io.model.bean.Subtitle
 import com.yeungkc.gank.io.ui.activity.MainActivity
+import org.greenrobot.eventbus.EventBus
 
 
 class ItemSubtitleViewHolder(parent: ViewGroup) : BaseViewHolder<AutoBean>(LayoutInflater.from(parent.context).inflate(R.layout.item_subtitle, parent, false)) {
@@ -24,7 +25,7 @@ class ItemSubtitleViewHolder(parent: ViewGroup) : BaseViewHolder<AutoBean>(Layou
         val mainActivity = context
         if (mainActivity is MainActivity) {
             bind.btMore.setOnClickListener {
-                mainActivity.showFragment(data.subTitle)
+                EventBus.getDefault().post(data.subTitle)
             }
             bind.btMore.visibility = View.VISIBLE
         } else {

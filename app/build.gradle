@@ -68,11 +68,9 @@ dependencies {
         exclude group: 'glide-parent'
     }
 
-
     testCompile 'junit:junit:4.12'
 
-
-//    compile 'org.greenrobot:eventbus:3.0.0'
+    compile 'org.greenrobot:eventbus:3.0.0'
 
     kapt "com.android.databinding:compiler:2.2.2"
 }

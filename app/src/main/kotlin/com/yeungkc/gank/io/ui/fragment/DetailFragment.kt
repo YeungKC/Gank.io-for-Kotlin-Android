@@ -1,6 +1,7 @@
 package com.yeungkc.gank.io.ui.fragment
 
 import android.os.Bundle
+import android.support.design.widget.Snackbar
 import android.support.v7.widget.LinearLayoutManager
 import android.view.LayoutInflater
 import android.view.View
@@ -9,10 +10,7 @@ import com.yeungkc.gank.io.CustomApplication
 import com.yeungkc.gank.io.R
 import com.yeungkc.gank.io.contract.DetailContract
 import com.yeungkc.gank.io.databinding.FragmentGankBinding
-import com.yeungkc.gank.io.extensions.getToolBarHeight
-import com.yeungkc.gank.io.extensions.isOrientationPortrait
-import com.yeungkc.gank.io.extensions.isTranslucentNavigation
-import com.yeungkc.gank.io.extensions.onScrollShowHideAppBar
+import com.yeungkc.gank.io.extensions.*
 import com.yeungkc.gank.io.model.bean.AutoBean
 import com.yeungkc.gank.io.model.bean.Result
 import com.yeungkc.gank.io.ui.IScrollFragment
@@ -33,7 +31,17 @@ class DetailFragment : BaseFragment(), IScrollFragment, DetailContract.DetailVie
     }
 
     override fun onError(error: Throwable) {
-        gankAdapter.showError()
+        binding.srlRefresh.isRefreshing = false
+
+        if (gankAdapter.isHaveDataSets()) {
+            Snackbar.make(binding.rvContent, R.string.connection_fail, Snackbar.LENGTH_LONG)
+                    .setAction(R.string.retry) {
+                        presenter.getContent()
+                    }
+                    .show(navigationBarHeight)
+        } else {
+            gankAdapter.showError()
+        }
     }
 
     override fun setData(data: List<AutoBean>) {
@@ -62,10 +70,10 @@ class DetailFragment : BaseFragment(), IScrollFragment, DetailContract.DetailVie
 
     companion object {
         const val paddingBottomDp = 16
-        fun newInstance(date: Date? = null,statusBarHeight: Int, navigationBarHeight: Int): DetailFragment {
+        fun newInstance(date: Date? = null, statusBarHeight: Int, navigationBarHeight: Int): DetailFragment {
 
             val args = Bundle()
-            args.putSerializable(DetailActivity.DATE,date)
+            args.putSerializable(DetailActivity.DATE, date)
             args.putInt(STATUS_BAR_HEIGHT, statusBarHeight)
             args.putInt(NAVIGATION_BAR_HEIGHT, navigationBarHeight)
 
@@ -76,7 +84,7 @@ class DetailFragment : BaseFragment(), IScrollFragment, DetailContract.DetailVie
         }
     }
 
-     var date: Date? = null
+    var date: Date? = null
 
 
     override fun initArgs(arguments: Bundle) {

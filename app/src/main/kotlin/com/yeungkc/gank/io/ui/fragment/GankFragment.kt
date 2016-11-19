@@ -1,6 +1,8 @@
 package com.yeungkc.gank.io.ui.fragment
 
 import android.os.Bundle
+import android.support.design.widget.Snackbar
+import android.support.design.widget.Snackbar.LENGTH_LONG
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.support.v7.widget.StaggeredGridLayoutManager
@@ -37,8 +39,18 @@ class GankFragment : BaseFragment(), IScrollFragment, GankContract.GankView {
     }
 
     override fun onError(error: Throwable) {
+        binding.srlRefresh.isRefreshing = false
+
         if (gankAdapter.isHaveDataSets()) {
-            gankAdapter.showLoadMoreError()
+            if (requestPage == 0) {
+                Snackbar.make(binding.rvContent, R.string.connection_fail, LENGTH_LONG)
+                        .setAction(R.string.retry) {
+                            presenter.getRemoteContent(requestPage)
+                        }
+                        .show(navigationBarHeight)
+            } else {
+                gankAdapter.showLoadMoreError()
+            }
         } else {
             gankAdapter.showError()
         }
@@ -92,7 +104,7 @@ class GankFragment : BaseFragment(), IScrollFragment, GankContract.GankView {
     }
 
     lateinit var presenter: GankContract.GankPresenter
-    val isFuLi by lazy {  categorical == "福利" }
+    val isFuLi by lazy { categorical == "福利" }
     val layoutManager by lazy<RecyclerView.LayoutManager> {
         if (isFuLi) {
             StaggeredGridLayoutManager(

@@ -11,6 +11,8 @@ import com.yeungkc.gank.io.databinding.ActivityDrawerBaseBinding
 import com.yeungkc.gank.io.fragmentnavigatior.FragmentNavigator
 import com.yeungkc.gank.io.ui.IScrollFragment
 import com.yeungkc.gank.io.ui.adapter.FragmentAdapter
+import org.greenrobot.eventbus.EventBus
+import org.greenrobot.eventbus.Subscribe
 
 
 class MainActivity : BaseToolBarActivity() {
@@ -55,6 +57,16 @@ class MainActivity : BaseToolBarActivity() {
         }
     }
 
+    override fun onStart() {
+        super.onStart()
+        EventBus.getDefault().register(this)
+    }
+
+    override fun onStop() {
+        super.onStop()
+        EventBus.getDefault().unregister(this)
+    }
+
     val itemData = arrayOf(
             R.id.nav_home,
             R.id.nav_category,
@@ -75,8 +87,9 @@ class MainActivity : BaseToolBarActivity() {
         navigator?.let {
             animateTitleChange(binding.navView.menu.getItem(position).title)
 
-            it.showFragment(position
-                    , enter = R.animator.fade_in, exit = R.animator.fade_out
+            it.showFragment(position,
+                    enter = R.animator.fade_in,
+                    exit = R.animator.fade_out
             )
             val fragment = it.getFragment(position)
             if (fragment is IScrollFragment) {
@@ -88,6 +101,7 @@ class MainActivity : BaseToolBarActivity() {
         }
     }
 
+    @Subscribe
     fun showFragment(title: String) {
         val menu = binding.navView.menu
         for (i in 0..menu.size() - 1) {
