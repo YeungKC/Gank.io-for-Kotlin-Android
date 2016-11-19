@@ -17,7 +17,6 @@ class MainActivity : BaseToolBarActivity() {
     private val binding by lazy { ActivityDrawerBaseBinding.inflate(layoutInflater) }
     override fun getToolBar(): Toolbar = binding.tlBaseToolbar
     var navigator: FragmentNavigator? = null
-    val appName by lazy { getString(R.string.app_name) }
 
 
     override fun onCreateView() {
@@ -74,11 +73,7 @@ class MainActivity : BaseToolBarActivity() {
 
     fun showFragment(position: Int) {
         navigator?.let {
-            if (position == 0) {
-                animateTitleChange(appName)
-            } else {
-                animateTitleChange(binding.navView.menu.getItem(position).title)
-            }
+            animateTitleChange(binding.navView.menu.getItem(position).title)
 
             it.showFragment(position
                     , enter = R.animator.fade_in, exit = R.animator.fade_out
@@ -90,6 +85,18 @@ class MainActivity : BaseToolBarActivity() {
                     fragment.onDoubleClickToolBar()
                 }
             }
+        }
+    }
+
+    fun showFragment(title: String) {
+        val menu = binding.navView.menu
+        for (i in 0..menu.size() - 1) {
+            val item = menu.getItem(i)
+            if (title != item.title) continue
+
+            showFragment(i)
+            item.isChecked = true
+            break
         }
     }
 

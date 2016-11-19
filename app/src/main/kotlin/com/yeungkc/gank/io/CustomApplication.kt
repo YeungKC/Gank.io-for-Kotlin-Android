@@ -6,6 +6,7 @@ import android.support.v7.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.integration.okhttp3.OkHttpUrlLoader
 import com.bumptech.glide.load.model.GlideUrl
+import com.facebook.stetho.Stetho
 import com.yeungkc.gank.io.model.DataLayer
 import okhttp3.OkHttpClient
 import java.io.InputStream
@@ -15,6 +16,8 @@ class CustomApplication : Application() {
         super.onCreate()
 
         contenxt = this
+
+        Stetho.initializeWithDefaults(this)
 
         DataLayer.hook(this)
 

@@ -1,9 +1,9 @@
 package com.yeungkc.gank.io.model
 
 import android.app.Application
+import com.facebook.stetho.okhttp3.StethoInterceptor
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
-import com.yeungkc.gank.io.model.Interceptor.HttpLogInterceptor
 import okhttp3.OkHttpClient
 
 object DataLayer {
@@ -13,26 +13,16 @@ object DataLayer {
     val gson: Gson by lazy {
         GsonBuilder()
                 .setDateFormat(pattern)
-//                .setExclusionStrategies(object : ExclusionStrategy {
-//                    override fun shouldSkipClass(clazz: Class<*>?): Boolean = false
-//
-//                    override fun shouldSkipField(f: FieldAttributes): Boolean =
-//                            f.declaringClass.equals(RealmObject::class.java)
-//                })
 //                .excludeFieldsWithoutExposeAnnotation()
                 .create()
     }
 
     val okHttpClient: OkHttpClient by lazy {
         OkHttpClient.Builder()
-                .addInterceptor(HttpLogInterceptor())
+                .addNetworkInterceptor(StethoInterceptor())
                 .build()
     }
 
     fun hook(app: Application) {
-//        Realm.setDefaultConfiguration(
-//                RealmConfiguration.Builder(app)
-//                        .deleteRealmIfMigrationNeeded()
-//                        .build())
     }
 }

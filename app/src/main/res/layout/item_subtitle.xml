@@ -45,6 +45,7 @@
 			tools:text="@string/android"/>
 
 		<android.support.v7.widget.AppCompatButton
+			android:id="@+id/bt_more"
 			style="?android:attr/borderlessButtonStyle"
 			android:layout_width="wrap_content"
 			android:clickable="true"
