@@ -11,16 +11,12 @@ import rx.Observable
 import rx.schedulers.Schedulers
 import java.util.*
 
-class DetailRemoteSource : IRemoteSource<List<Result>, Boolean> {
-    override fun requestContent(param: Boolean): Observable<List<Result>> {
-        return GankService.api.getHistory()
+class DetailRemoteSource : IRemoteSource<List<Result>, Date> {
+    override fun requestContent(param: Date): Observable<List<Result>> {
+        return param.run {
+            GankService.api.getDetailData(year(), month(), day())
+        }
                 .subscribeOn(Schedulers.io())
-                .map(HttpResultFunc<List<Date>>())
-                .flatMap {
-                    it[0].run {
-                        GankService.api.getDetailData(year(), month(), day())
-                    }
-                }
                 .map(HttpResultFunc<DayResult>())
                 .map {
                     it.run {
@@ -33,5 +29,11 @@ class DetailRemoteSource : IRemoteSource<List<Result>, Boolean> {
                                 休息视频List
                     }
                 }
+    }
+
+    fun getHistory(): Observable<List<Date>> {
+        return GankService.api.getHistory()
+                .subscribeOn(Schedulers.io())
+                .map(HttpResultFunc<List<Date>>())
     }
 }

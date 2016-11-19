@@ -46,7 +46,7 @@ class MainActivity : BaseToolBarActivity() {
         val categorical = resources.getStringArray(R.array.categorical)
         val adapterAdapter = FragmentAdapter(categorical, insets.systemWindowInsetTop, insets.systemWindowInsetBottom)
 
-        navigator = FragmentNavigator(supportFragmentManager, adapterAdapter, R.id.fl_base_content)
+        navigator = FragmentNavigator(supportFragmentManager, adapterAdapter, binding.flBaseContent.id)
         navigator?.let {
             it.setDefaultPosition(0)
             it.onCreate(savedInstanceState)

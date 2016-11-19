@@ -19,11 +19,11 @@ abstract class BasePresenter<T,V : BaseView<*>>() {
         if (isFinishing) pendingSubscriptions.clear()
     }
 
-   open var mRemoteSubscriber: RemoteSubscriber<T>? = null
+   open var remoteSubscriber: RemoteSubscriber<T>? = null
 
-    open fun isRemoteLoading(): Boolean = !(mRemoteSubscriber?.isUnsubscribed ?: true)
+    open fun isRemoteLoading(): Boolean = !(remoteSubscriber?.isUnsubscribed ?: true)
 
-    open fun cancelRemoteLoading() = mRemoteSubscriber?.unsubscribe()
+    open fun cancelRemoteLoading() = remoteSubscriber?.unsubscribe()
 
     abstract class RemoteSubscriber<T>(val view: BaseView<*>?) : Subscriber<T>() {
         override fun onStart() {

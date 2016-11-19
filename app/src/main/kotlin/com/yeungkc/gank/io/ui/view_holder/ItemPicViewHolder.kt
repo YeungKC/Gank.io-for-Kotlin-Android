@@ -8,8 +8,10 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.yeungkc.gank.io.R
 import com.yeungkc.gank.io.model.bean.AutoBean
 import com.yeungkc.gank.io.model.bean.Result
+import com.yeungkc.gank.io.ui.activity.DetailActivity
 import com.yeungkc.gank.io.ui.glide.module.CustomImageSizeModelGankStudio
 import kotlinx.android.synthetic.main.item_gank_pic.view.*
+import org.jetbrains.anko.startActivity
 import java.text.SimpleDateFormat
 
 class ItemPicViewHolder(val parent: ViewGroup) : BaseViewHolder<AutoBean>(LayoutInflater.from(parent.context).inflate(R.layout.item_gank_pic, parent, false)) {
@@ -31,7 +33,7 @@ class ItemPicViewHolder(val parent: ViewGroup) : BaseViewHolder<AutoBean>(Layout
             itemView.tv_item.text = SimpleDateFormat("yy\nMM/dd").format(publishedAt)
 
             itemView.setOnClickListener {
-//                context.startActivity<DetailActivity>(DetailActivity.DATE to data.publishedAt)
+                context.startActivity<DetailActivity>(DetailActivity.DATE to data.publishedAt)
             }
         }
     }

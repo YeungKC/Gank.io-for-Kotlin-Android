@@ -33,13 +33,13 @@ interface GankContract {
             getRemoteContent()
         }
 
-        override var mRemoteSubscriber: BasePresenter.RemoteSubscriber<List<Result>>? = null
+        override var remoteSubscriber: BasePresenter.RemoteSubscriber<List<Result>>? = null
 
         @UiThread
         fun getRemoteContent(page: Int = 0, type: String = categorical, limit: Int = DEFAULT_COUNT) {
             cancelRemoteLoading()
 
-            mRemoteSubscriber = object : BasePresenter.RemoteSubscriber<List<Result>>(v) {
+            remoteSubscriber = object : BasePresenter.RemoteSubscriber<List<Result>>(v) {
                 override fun onStart() {
                     v?.requestPage = page
                     super.onStart()
@@ -74,7 +74,7 @@ interface GankContract {
                     .toList()
                     .subscribeOn(Schedulers.io())
                     .observeOn(AndroidSchedulers.mainThread())
-                    .subscribe(mRemoteSubscriber)
+                    .subscribe(remoteSubscriber)
                     .pending(pendingSubscriptions)
         }
 

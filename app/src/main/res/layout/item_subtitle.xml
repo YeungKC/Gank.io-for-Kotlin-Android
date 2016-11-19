@@ -9,6 +9,10 @@
 		<variable
 			name="subtitle"
 			type="String"/>
+
+		<variable
+			name="icon"
+			type="android.graphics.drawable.Drawable"/>
 	</data>
 
 	<LinearLayout
@@ -23,11 +27,11 @@
 		>
 
 		<android.support.v7.widget.AppCompatImageView
-			android:id="@+id/icon"
 			android:layout_width="20dp"
 			android:layout_height="20dp"
 			android:layout_marginEnd="16dp"
 			tools:src="@drawable/ic_android"
+			android:src="@{icon}"
 			/>
 
 		<android.support.v7.widget.AppCompatTextView

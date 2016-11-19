@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
+	>
+
+	<android.support.design.widget.CoordinatorLayout
+		android:id="@+id/drawer_layout"
+		android:layout_width="match_parent"
+		android:layout_height="match_parent"
+		>
+
+		<FrameLayout
+			android:id="@+id/fl_base_content"
+			android:layout_width="match_parent"
+			android:layout_height="match_parent"
+			/>
+
+		<android.support.v7.widget.Toolbar
+			android:id="@+id/tl_base_toolbar"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:background="?attr/toolBarColor"
+			android:elevation="8dp"
+			android:minHeight="?attr/actionBarSize"
+			android:theme="@style/AppTheme.AppBarOverlay"
+			app:popupTheme="@style/AppTheme.PopupOverlay"
+			/>
+	</android.support.design.widget.CoordinatorLayout>
+</layout>
+

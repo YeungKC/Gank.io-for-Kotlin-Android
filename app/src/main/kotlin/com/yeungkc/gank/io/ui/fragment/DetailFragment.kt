@@ -17,6 +17,7 @@ import com.yeungkc.gank.io.model.bean.AutoBean
 import com.yeungkc.gank.io.model.bean.Result
 import com.yeungkc.gank.io.ui.IScrollFragment
 import com.yeungkc.gank.io.ui.IToolbarManager
+import com.yeungkc.gank.io.ui.activity.DetailActivity
 import com.yeungkc.gank.io.ui.adapter.GankAdapter
 import com.yeungkc.gank.io.ui.item_animator.SlideInItemAnimator
 import java.util.*
@@ -61,9 +62,10 @@ class DetailFragment : BaseFragment(), IScrollFragment, DetailContract.DetailVie
 
     companion object {
         const val paddingBottomDp = 16
-        fun newInstance(statusBarHeight: Int, navigationBarHeight: Int): DetailFragment {
+        fun newInstance(date: Date? = null,statusBarHeight: Int, navigationBarHeight: Int): DetailFragment {
 
             val args = Bundle()
+            args.putSerializable(DetailActivity.DATE,date)
             args.putInt(STATUS_BAR_HEIGHT, statusBarHeight)
             args.putInt(NAVIGATION_BAR_HEIGHT, navigationBarHeight)
 
@@ -71,6 +73,18 @@ class DetailFragment : BaseFragment(), IScrollFragment, DetailContract.DetailVie
             fragment.arguments = args
 
             return fragment
+        }
+    }
+
+     var date: Date? = null
+
+
+    override fun initArgs(arguments: Bundle) {
+        super.initArgs(arguments)
+        arguments.getSerializable(DetailActivity.DATE)?.let {
+            if (it !is Date) return
+
+            date = it
         }
     }
 
@@ -110,7 +124,7 @@ class DetailFragment : BaseFragment(), IScrollFragment, DetailContract.DetailVie
 
     override fun initData(savedInstanceState: Bundle?) {
         super.initData(savedInstanceState)
-        presenter = DetailContract.DetailPresenter()
+        presenter = DetailContract.DetailPresenter(date)
         presenter.bind(this)
 
         savedInstanceState?.let {

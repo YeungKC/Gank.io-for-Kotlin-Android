@@ -1,5 +1,6 @@
 package com.yeungkc.gank.io.ui.view_holder
 
+import android.graphics.drawable.Drawable
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import com.yeungkc.gank.io.R
@@ -17,8 +18,8 @@ class ItemSubtitleViewHolder(parent: ViewGroup) : BaseViewHolder<AutoBean>(Layou
 
     override fun bind(data: AutoBean) {
         if (data !is Subtitle) return
-        val icon = context.resources.getDrawable(data.getIcon(context))
-        bind.icon.setImageDrawable(icon)
+        val icon: Drawable = context.resources.getDrawable(data.getIcon(context))
+        bind.icon = icon
         bind.subtitle = data.subTitle
         bind.executePendingBindings()
     }
