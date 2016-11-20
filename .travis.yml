@@ -5,6 +5,9 @@ android:
     - android-25
     - extra-android-m2repository
     - extra-android-support
+  licenses:
+    - android-sdk-license-.+
+    - '.+'
 jdk:
   - oraclejdk8
 script:
