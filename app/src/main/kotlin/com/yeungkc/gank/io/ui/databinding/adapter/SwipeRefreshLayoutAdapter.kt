@@ -5,7 +5,7 @@ import android.support.v4.widget.SwipeRefreshLayout
 
 class SwipeRefreshLayoutAdapter {
     @BindingAdapter("app:colorSchemeColor")
-    public fun setColorSchemeColor(swipeRefreshLayout: SwipeRefreshLayout, color: Int) {
+    fun setColorSchemeColor(swipeRefreshLayout: SwipeRefreshLayout, color: Int) {
         swipeRefreshLayout.setColorSchemeColors(color)
     }
 }

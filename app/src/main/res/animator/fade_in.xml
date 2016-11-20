@@ -6,11 +6,4 @@
 		android:toAlpha="1"
 		android:duration="@android:integer/config_shortAnimTime"
 		/>
-
-	<!--<translate-->
-		<!--android:interpolator="@android:interpolator/linear_out_slow_in"-->
-		<!--android:duration="160"-->
-		<!--android:fromYDelta="5%"-->
-		<!--android:toYDelta="0%"-->
-		<!--/>-->
 </set>

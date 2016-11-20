@@ -51,6 +51,6 @@
 			android:clickable="true"
 			android:layout_height="wrap_content"
 			android:textColor="?android:attr/textColorTertiary"
-			android:text="MORE"/>
+			android:text="@string/more"/>
 	</LinearLayout>
 </layout>

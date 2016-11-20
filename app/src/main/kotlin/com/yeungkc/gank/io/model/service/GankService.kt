@@ -13,7 +13,7 @@ import retrofit2.http.Path
 import rx.Observable
 import java.util.*
 
-public class GankService {
+class GankService {
     companion object {
         val api: APIs
 

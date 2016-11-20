@@ -19,6 +19,8 @@
 	<string name="category">類別</string>
 	<string name="share">分享</string>
 	<string name="share_title">分享到…</string>
+	<string name="latest_content">最新内容</string>
+	<string name="more">MORE</string>
 
 	<string-array name="categorical">
 		<item>最新内容</item>

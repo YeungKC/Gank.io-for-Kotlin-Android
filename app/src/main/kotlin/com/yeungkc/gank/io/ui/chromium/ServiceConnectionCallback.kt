@@ -7,10 +7,10 @@ interface ServiceConnectionCallback {
      * Called when the service is connected.
      * @param client a CustomTabsClient
      */
-    abstract fun onServiceConnected(client: CustomTabsClient)
+    fun onServiceConnected(client: CustomTabsClient)
 
     /**
      * Called when the service is disconnected.
      */
-    abstract fun onServiceDisconnected()
+    fun onServiceDisconnected()
 }

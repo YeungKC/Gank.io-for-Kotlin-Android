@@ -1,6 +1,5 @@
 package com.yeungkc.gank.io.model.repo.source.remote
 
-import com.yeungkc.gank.io.model.DataLayer
 import com.yeungkc.gank.io.model.HttpResultFunc
 import com.yeungkc.gank.io.model.bean.Result
 import com.yeungkc.gank.io.model.service.GankService

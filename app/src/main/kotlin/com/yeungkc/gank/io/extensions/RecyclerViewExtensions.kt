@@ -72,8 +72,10 @@ fun RecyclerView.LayoutManager.getLastVisibleItemPosition(): Int {
         is StaggeredGridLayoutManager -> {
             val findLastVisibleItemPositions = findLastVisibleItemPositions(null)
 
-            for (i in findLastVisibleItemPositions)
-                if (i >= lastVisibleItemPosition) lastVisibleItemPosition = i
+            findLastVisibleItemPositions
+                    .asSequence()
+                    .filter { it >= lastVisibleItemPosition }
+                    .forEach { lastVisibleItemPosition = it }
         }
     }
 

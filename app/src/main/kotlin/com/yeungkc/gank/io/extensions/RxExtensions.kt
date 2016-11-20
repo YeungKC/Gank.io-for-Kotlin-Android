@@ -1,4 +1,4 @@
-package com.imallan.gankmvp.extensions
+package com.yeungkc.gank.io.extensions
 
 import rx.Subscription
 import rx.subscriptions.CompositeSubscription

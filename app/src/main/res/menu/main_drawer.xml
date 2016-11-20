@@ -4,7 +4,7 @@
 		<item
 			android:id="@+id/nav_home"
 			android:icon="@drawable/ic_home"
-			android:title="最新内容"
+			android:title="@string/latest_content"
 			/>
 		<item
 			android:id="@+id/nav_category"

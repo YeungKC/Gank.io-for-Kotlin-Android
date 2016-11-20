@@ -4,10 +4,9 @@ import android.support.annotation.UiThread
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.bumptech.glide.request.target.Target
-import com.imallan.gankmvp.extensions.pending
 import com.yeungkc.gank.io.CustomApplication
+import com.yeungkc.gank.io.extensions.pending
 import com.yeungkc.gank.io.model.bean.Result
-import com.yeungkc.gank.io.model.repo.GankRepo
 import com.yeungkc.gank.io.model.repo.source.remote.GankRemoteSource
 import com.yeungkc.gank.io.model.repo.source.remote.RequestBean
 import com.yeungkc.gank.io.presenter.BasePresenter
@@ -22,7 +21,7 @@ interface GankContract {
 
     class GankPresenter(val categorical: String) : BasePresenter<List<Result>, GankView>() {
 
-        val mRepo: GankRepo by lazy { GankRepo(categorical) }
+//        val repo: GankRepo by lazy { GankRepo(categorical) }
         val r: GankRemoteSource by lazy { GankRemoteSource() }
 
         companion object {

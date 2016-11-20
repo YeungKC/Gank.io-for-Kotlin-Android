@@ -1,6 +1,6 @@
 package com.yeungkc.gank.io.contract
 
-import com.imallan.gankmvp.extensions.pending
+import com.yeungkc.gank.io.extensions.pending
 import com.yeungkc.gank.io.model.bean.AutoBean
 import com.yeungkc.gank.io.model.bean.Result
 import com.yeungkc.gank.io.model.bean.Subtitle
@@ -47,7 +47,7 @@ interface DetailContract {
 
     class TransFormDataSets : Func1<List<Result>, ArrayList<AutoBean>> {
         override fun call(t: List<Result>): ArrayList<AutoBean> {
-            val arrayList: ArrayList<AutoBean> = ArrayList<AutoBean>()
+            val arrayList: ArrayList<AutoBean> = ArrayList()
             var tempType: String? = null
             for (result in t) {
                 val type = result.type
