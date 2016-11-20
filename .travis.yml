@@ -6,9 +6,9 @@ android:
     - extra-android-m2repository
     - extra-android-support
     licenses:
-        - 'android-sdk-preview-license-52d11cd2'
-        - 'android-sdk-license-.+'
-        - 'google-gdk-license-.+'
+        - android-sdk-preview-license-.+
+        - android-sdk-license-.+
+        - google-gdk-license-.+
 jdk:
   - oraclejdk8
 script:
