@@ -7,7 +7,7 @@ apply plugin: 'kotlin-android-extensions'
 
 android {
     compileSdkVersion 25
-    buildToolsVersion "24.0.3"
+    buildToolsVersion "23.0.3"
     defaultConfig {
         applicationId "com.yeungkc.gank.io"
         minSdkVersion 21
