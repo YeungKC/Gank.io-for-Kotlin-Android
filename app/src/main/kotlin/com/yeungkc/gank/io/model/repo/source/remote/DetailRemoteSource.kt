@@ -9,9 +9,11 @@ import com.yeungkc.gank.io.model.bean.Result
 import com.yeungkc.gank.io.model.service.GankService
 import rx.Observable
 import rx.schedulers.Schedulers
+import ws.vinta.pangu.Pangu
 import java.util.*
 
 class DetailRemoteSource : IRemoteSource<List<Result>, Date> {
+    val pangu by lazy { Pangu() }
     override fun requestContent(param: Date): Observable<List<Result>> {
         return param.run {
             GankService.api.getDetailData(year(), month(), day())
@@ -29,6 +31,12 @@ class DetailRemoteSource : IRemoteSource<List<Result>, Date> {
                                 休息视频List
                     }
                 }
+                .flatMap { Observable.from(it) }
+                .map {
+                    it.desc = pangu.spacingText(it.desc)
+                    it
+                }
+                .toList()
     }
 
     fun getHistory(): Observable<List<Date>> {
