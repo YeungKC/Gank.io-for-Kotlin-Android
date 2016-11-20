@@ -44,7 +44,7 @@ fun RecyclerView.getAdapterIsLoadMore(): Boolean {
     var b = true
 
     val adapter = adapter
-    if (adapter is LoadingAdapter<*>) {
+    if (adapter is LoadingAdapter) {
         b = adapter.loadMoreMsgType == LOADING_MORE_TYPE
     }
     return b
@@ -97,10 +97,11 @@ fun RecyclerView.LayoutManager.getFirstVisibleItemPosition(): Int {
     return fristVisibleItemPosition
 }
 
-@JvmOverloads fun RecyclerView.onScrollShowHideAppBar(hideToolBar: () -> Unit,
-                                        showToolBar: () -> Unit,
-                                        onSaveScrollOffset: (Int) -> Unit = {}
-) {
+@JvmOverloads fun RecyclerView.onScrollShowHideAppBar(
+        onSaveScrollOffset: (Int) -> Unit = {},
+        hideToolBar: () -> Unit,
+        showToolBar: () -> Unit
+        ) {
     addOnScrollListener(object : RecyclerView.OnScrollListener() {
         var flag = false
             set(value) {
@@ -119,10 +120,10 @@ fun RecyclerView.LayoutManager.getFirstVisibleItemPosition(): Int {
             if (dy == 0) return
 
             val b = dy > 0
+            val computeVerticalScrollOffset = recyclerView.computeVerticalScrollOffset()
+            onSaveScrollOffset(computeVerticalScrollOffset)
             if (b) {
                 val paddingTop = recyclerView.paddingTop
-                val computeVerticalScrollOffset = recyclerView.computeVerticalScrollOffset()
-                onSaveScrollOffset(computeVerticalScrollOffset)
                 if (computeVerticalScrollOffset < paddingTop) return
             }
 

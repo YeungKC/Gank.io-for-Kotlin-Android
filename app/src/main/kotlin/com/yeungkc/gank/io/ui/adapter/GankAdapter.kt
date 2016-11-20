@@ -12,7 +12,7 @@ import com.yeungkc.gank.io.ui.view_holder.ItemPicViewHolder
 import com.yeungkc.gank.io.ui.view_holder.ItemSubtitleViewHolder
 
 
-class GankAdapter(placeholderColors: IntArray = IntArray(0)) : LoadingAdapter<AutoBean>() {
+class GankAdapter(placeholderColors: IntArray = IntArray(0)) : LoadingAdapter() {
     val shotLoadingPlaceholderColors: IntArray
 
     init {

@@ -34,6 +34,11 @@ class DetailActivity : BaseToolBarActivity() {
         this.title = SimpleDateFormat("yyyy-MM-dd").format(date)
     }
 
+    override fun initEvent(savedInstanceState: Bundle?) {
+        super.initEvent(savedInstanceState)
+        enableHomeAsUp { onBackPressed() }
+    }
+
     override fun onApplyWindowInsets(savedInstanceState: Bundle?, insets: WindowInsetsCompat) {
         super.onApplyWindowInsets(savedInstanceState, insets)
 

@@ -175,11 +175,11 @@ class GankFragment : BaseFragment(), IScrollFragment, GankContract.GankView {
             presenter.getRemoteContent(requestPage + 1)
         }
 
-        gankAdapter.setOnClickErrorItemListener { presenter.getRemoteContent(requestPage) }
+        gankAdapter.onClickErrorItemListener = { presenter.getRemoteContent(requestPage) }
         binding.rvContent.onScrollShowHideAppBar(
+                { scrollOffset = it },
                 { toolbarManager?.hideToolBar() },
-                { toolbarManager?.showToolBar() },
-                { scrollOffset = it }
+                { toolbarManager?.showToolBar() }
         )
     }
 

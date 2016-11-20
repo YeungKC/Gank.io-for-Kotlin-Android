@@ -69,6 +69,7 @@ interface IToolbarManager {
 
         var toolbarTitle = getToolbarTitle()
         if (toolbarTitle != null) {
+            if (toolbarTitle == title) return
             toolbarTitle
                     .run {
                         animate()

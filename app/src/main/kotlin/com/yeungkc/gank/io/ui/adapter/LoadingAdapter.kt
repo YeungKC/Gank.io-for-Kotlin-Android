@@ -6,15 +6,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.yeungkc.gank.io.R
+import com.yeungkc.gank.io.model.bean.AutoBean
 import com.yeungkc.gank.io.ui.view_holder.BaseViewHolder
 import java.util.*
 
-abstract class LoadingAdapter<E> : AutoBindAdapter<E>() {
+abstract class LoadingAdapter : AutoBindAdapter() {
     var onClickErrorItemListener: (() -> Unit)? = null
-    fun setOnClickErrorItemListener(event: () -> Unit): LoadingAdapter<E> {
-        onClickErrorItemListener = event
-        return this
-    }
 
     companion object {
         const val LOADING_TYPE = -1
@@ -64,25 +61,25 @@ abstract class LoadingAdapter<E> : AutoBindAdapter<E>() {
     open fun getExItemId(position: Int): Long = super.getItemId(position)
 
     @Suppress("UNCHECKED_CAST")
-    override final fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BaseViewHolder<E> {
+    override final fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BaseViewHolder<AutoBean> {
         return when (viewType) {
-            LOADING_TYPE -> LoadingViewHolder(parent, R.layout.item_loading) as BaseViewHolder<E>
-            ERROR_TYPE -> ErrorViewHolder(parent, R.layout.item_error, onClickErrorItemListener) as BaseViewHolder<E>
-            NO_DATA_TYPE -> NoDataViewHolder(parent, R.layout.item_no_data) as BaseViewHolder<E>
-            LOADING_MORE_TYPE -> LoadingMoreViewHolder(parent, R.layout.item_loading_more) as BaseViewHolder<E>
-            LOADING_MORE_ERROR_TYPE -> LoadingMoreErrorViewHolder(parent, R.layout.item_loading_more_error, onClickErrorItemListener) as BaseViewHolder<E>
-            LOADING_MORE_NO_DATA_TYPE -> LoadingMoreNoDataViewHolder(parent, R.layout.item_loading_more_no_data) as BaseViewHolder<E>
+            LOADING_TYPE -> LoadingViewHolder(parent, R.layout.item_loading)
+            ERROR_TYPE -> ErrorViewHolder(parent, R.layout.item_error, onClickErrorItemListener)
+            NO_DATA_TYPE -> NoDataViewHolder(parent, R.layout.item_no_data)
+            LOADING_MORE_TYPE -> LoadingMoreViewHolder(parent, R.layout.item_loading_more)
+            LOADING_MORE_ERROR_TYPE -> LoadingMoreErrorViewHolder(parent, R.layout.item_loading_more_error, onClickErrorItemListener)
+            LOADING_MORE_NO_DATA_TYPE -> LoadingMoreNoDataViewHolder(parent, R.layout.item_loading_more_no_data)
             else -> onCreateExViewHolder(parent, viewType)
         }
     }
 
-    abstract fun onCreateExViewHolder(parent: ViewGroup, viewType: Int): BaseViewHolder<E>
+    abstract fun onCreateExViewHolder(parent: ViewGroup, viewType: Int): BaseViewHolder<AutoBean>
 
-    override final fun onBindViewHolder(holder: BaseViewHolder<E>, position: Int) {
+    override final fun onBindViewHolder(holder: BaseViewHolder<AutoBean>, position: Int) {
         if (holder !is MsgViewHolder) onBindExViewHolder(holder, position)
     }
 
-    open fun onBindExViewHolder(holder: BaseViewHolder<E>, position: Int) {
+    open fun onBindExViewHolder(holder: BaseViewHolder<AutoBean>, position: Int) {
         super.onBindViewHolder(holder, position)
     }
 
@@ -206,7 +203,7 @@ abstract class LoadingAdapter<E> : AutoBindAdapter<E>() {
         }
     }
 
-    override fun replaceWith(dataSets: List<E>,onLoaded:()->Unit) {
+    override fun replaceWith(dataSets: List<AutoBean>,onLoaded:()->Unit) {
         if (dataSets.isNotEmpty() && msgType != 0) {
             msgType = 0
             notifyItemRemoved(0)

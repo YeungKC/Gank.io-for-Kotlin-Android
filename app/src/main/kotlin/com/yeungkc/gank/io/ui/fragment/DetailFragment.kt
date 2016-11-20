@@ -122,11 +122,11 @@ class DetailFragment : BaseFragment(), IScrollFragment, DetailContract.DetailVie
             if (gankAdapter.isCanLoading())
                 presenter.getContent()
         }
-        gankAdapter.setOnClickErrorItemListener { presenter.getContent() }
+        gankAdapter.onClickErrorItemListener = { presenter.getContent() }
         binding.rvContent.onScrollShowHideAppBar(
+                { scrollOffset = it },
                 { toolbarManager?.hideToolBar() },
-                { toolbarManager?.showToolBar() },
-                { scrollOffset = it }
+                { toolbarManager?.showToolBar() }
         )
     }
 
