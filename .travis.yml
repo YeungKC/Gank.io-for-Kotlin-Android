@@ -6,9 +6,11 @@ android:
     - extra-android-m2repository
     - extra-android-support
     licenses:
-        - android-sdk-preview-license-.+
-        - android-sdk-license-.+
-        - google-gdk-license-.+
+      - android-sdk-license-.+
+      - '.+'
+before_install:
+  - mkdir "$ANDROID_HOME/licenses" || true
+  - echo -e "\n8933bad161af4178b1185d1a37fbf41ea5269c55" > "$ANDROID_HOME/licenses/android-sdk-license"
 jdk:
   - oraclejdk8
 script:
