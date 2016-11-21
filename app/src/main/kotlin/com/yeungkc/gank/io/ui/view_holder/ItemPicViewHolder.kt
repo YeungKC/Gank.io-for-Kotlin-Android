@@ -15,20 +15,29 @@ import org.jetbrains.anko.startActivity
 import java.text.SimpleDateFormat
 
 class ItemPicViewHolder(val parent: ViewGroup) : BaseViewHolder<AutoBean>(LayoutInflater.from(parent.context).inflate(R.layout.item_gank_pic, parent, false)) {
+    var data: Result? = null
     val bind:ItemGankPicBinding
 
     init {
-     bind = ItemGankPicBinding.bind(itemView)
+        bind = ItemGankPicBinding.bind(itemView)
+
+        bind.root.setOnClickListener {
+            data?.run {
+                context.startActivity<DetailActivity>(DetailActivity.DATE to publishedAt)
+            }
+        }
     }
 
     override fun bind(data: AutoBean) {
         if (data !is Result) return
 
+        this.data = data
+
         data.run {
             bind.flItem.setOriginalSize(width, height)
 
-            if (url != itemView.tag) {
-                itemView.tag = url
+            if (url != bind.root.tag) {
+                bind.root.tag = url
                 Glide.with(bind.ivItem.context)
                         .load(CustomImageSizeModelGankStudio(url))
                         .placeholder(ColorDrawable(shotLoadingPlaceholderColor))
@@ -38,9 +47,7 @@ class ItemPicViewHolder(val parent: ViewGroup) : BaseViewHolder<AutoBean>(Layout
 
             bind.tvItem.text = SimpleDateFormat("yy\nMM/dd").format(publishedAt)
 
-            itemView.setOnClickListener {
-                context.startActivity<DetailActivity>(DetailActivity.DATE to data.publishedAt)
-            }
+            bind.executePendingBindings()
         }
     }
 }

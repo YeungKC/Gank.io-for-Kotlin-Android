@@ -21,12 +21,11 @@ import java.text.SimpleDateFormat
 class ItemGankViewHolder(parent: ViewGroup) : BaseViewHolder<AutoBean>(LayoutInflater.from(parent.context).inflate(R.layout.item_gank, parent, false)) {
     var data: Result? = null
     val bind: ItemGankBinding
-    init {
-        bind = ItemGankBinding.bind(itemView)
-    }
 
     init {
-        itemView.setOnClickListener {
+        bind = ItemGankBinding.bind(itemView)
+
+        bind.root.setOnClickListener {
             data?.run {
                 val url = url
 
@@ -59,6 +58,8 @@ class ItemGankViewHolder(parent: ViewGroup) : BaseViewHolder<AutoBean>(LayoutInf
         bind.title = des
         bind.who = context.getString(R.string.by, data.who?.trim())
         bind.date = SimpleDateFormat("yy/MM/dd").format(data.publishedAt)
+
+        bind.executePendingBindings()
     }
 
     private fun createPendingIntent(actionSourceId: Int, des: String?): PendingIntent {

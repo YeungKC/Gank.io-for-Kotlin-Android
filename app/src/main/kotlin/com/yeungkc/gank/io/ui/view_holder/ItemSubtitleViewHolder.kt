@@ -12,25 +12,29 @@ import org.greenrobot.eventbus.EventBus
 
 
 class ItemSubtitleViewHolder(parent: ViewGroup) : BaseViewHolder<AutoBean>(LayoutInflater.from(parent.context).inflate(R.layout.item_subtitle, parent, false)) {
+    var data: Subtitle? = null
     val bind: ItemSubtitleBinding
 
     init {
         bind = ItemSubtitleBinding.bind(itemView)
+
+        bind.btMore.setOnClickListener {
+            data?.run {
+                EventBus.getDefault().post(subTitle)
+            }
+        }
     }
 
     override fun bind(data: AutoBean) {
         if (data !is Subtitle) return
+
+        this.data = data
+
         bind.icon = context.resources.getDrawable(data.getIcon(context))
         bind.subtitle = data.subTitle
         val mainActivity = context
-        if (mainActivity is MainActivity) {
-            bind.btMore.setOnClickListener {
-                EventBus.getDefault().post(data.subTitle)
-            }
-            bind.btMore.visibility = View.VISIBLE
-        } else {
-            bind.btMore.visibility = View.GONE
-        }
+        bind.btMore.visibility = if (mainActivity is MainActivity) View.VISIBLE else View.GONE
+
         bind.executePendingBindings()
     }
 }
