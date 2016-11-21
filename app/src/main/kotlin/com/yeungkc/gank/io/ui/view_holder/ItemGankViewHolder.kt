@@ -10,17 +10,20 @@ import android.support.v4.content.ContextCompat
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import com.yeungkc.gank.io.R
+import com.yeungkc.gank.io.databinding.ItemGankBinding
 import com.yeungkc.gank.io.extensions.getBitmap
 import com.yeungkc.gank.io.model.bean.AutoBean
 import com.yeungkc.gank.io.model.bean.Result
 import com.yeungkc.gank.io.ui.chromium.ActionBroadcastReceiver
 import com.yeungkc.gank.io.ui.chromium.CustomTabsHelper
-import kotlinx.android.synthetic.main.item_gank.view.*
 import java.text.SimpleDateFormat
 
 class ItemGankViewHolder(parent: ViewGroup) : BaseViewHolder<AutoBean>(LayoutInflater.from(parent.context).inflate(R.layout.item_gank, parent, false)) {
     var data: Result? = null
-
+    val bind: ItemGankBinding
+    init {
+        bind = ItemGankBinding.bind(itemView)
+    }
 
     init {
         itemView.setOnClickListener {
@@ -53,9 +56,9 @@ class ItemGankViewHolder(parent: ViewGroup) : BaseViewHolder<AutoBean>(LayoutInf
 
         val des = data.desc?.trim()
 
-        itemView.item_title.text = des
-        itemView.item_who.text = itemView.context.getString(R.string.by, data.who?.trim())
-        itemView.item_date.text = SimpleDateFormat("yy/MM/dd").format(data.publishedAt)
+        bind.title = des
+        bind.who = context.getString(R.string.by, data.who?.trim())
+        bind.date = SimpleDateFormat("yy/MM/dd").format(data.publishedAt)
     }
 
     private fun createPendingIntent(actionSourceId: Int, des: String?): PendingIntent {
