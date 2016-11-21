@@ -37,6 +37,16 @@ android {
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         buildConfigField("String", "API_BASE_URL", "\"${API_BASE_URL}\"")
     }
+    signingConfigs {
+        releaseConfig {
+            Properties signingProperties = new Properties()
+            signingProperties.load(rootProject.file("signing.properties").newDataInputStream())
+            storeFile rootProject.file(signingProperties.get("STORE_FILE"))
+            storePassword signingProperties.get("STORE_PASSWORD") ?: System.getenv("STORE_PASSWORD") ?: System.console()
+            keyAlias signingProperties.get("KEY_ALIAS")?: System.getenv("KEY_ALIAS") ?: System.console()
+            keyPassword signingProperties.get("KEY_PASSWORD") ?: System.getenv("KEY_PASSWORD") ?: System.console()
+        }
+    }
     buildTypes {
         debug {
             applicationIdSuffix ".debug"
@@ -44,6 +54,7 @@ android {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.releaseConfig
         }
     }
     applicationVariants.all { variant ->

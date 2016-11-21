@@ -2,25 +2,25 @@ language: android
 sudo: false
 android:
   components:
-    - build-tools-25.0.0
-    - android-25
-    - extra-android-m2repository
-    - extra-android-support
-#    licenses:
-#      - android-sdk-license-.+
-#      - '.+'
+  - build-tools-25.0.0
+  - android-25
+  - extra-android-m2repository
+  - extra-android-support
 before_install:
-  - mkdir "$ANDROID_HOME/licenses" || true
-  - echo -e "\n8933bad161af4178b1185d1a37fbf41ea5269c55" > "$ANDROID_HOME/licenses/android-sdk-license"
+- mkdir "$ANDROID_HOME/licenses" || true
+- echo -e "\n8933bad161af4178b1185d1a37fbf41ea5269c55" > "$ANDROID_HOME/licenses/android-sdk-license"
+- openssl aes-256-cbc -K $encrypted_a7fecd1ab14c_key -iv $encrypted_a7fecd1ab14c_iv
+  -in YeungKc.jks.enc -out YeungKc.jks -d
 jdk:
-  - oraclejdk8
+- oraclejdk8
 script:
-  - ./gradlew build
+- ./gradlew build
 deploy:
   provider: releases
   api_key:
     secure: lWodS5ZTdGPcnF1MGtpYAU3hH6bpJ0t0213eEdF0iWssq1e3mW/RBJMQFn2GYuPobbe3ngdu5/VJtn9XjPHTU0ON4pr6bFN1bYkcwBzq9gjYU4q0E2jIWm4Ga9gQh4kJpLzbaQ3hGdF52r5dX/wwPun1lhPJoPGAJvtxfqv9HrRhvWmxzjmEAweVrnwJQ6ZAhyQmCkVrfBb8dl46U9qiUr+/6c4pjTLriAbP+FngZkAG2kSKnR6ElVufE2EUWknaY2Scka45OJyMqaQCLXQSH0Kpvmx/uERfDjJPvP5lFrqKt7VNN5V3sAzKAY8+LO22bQWxJjZz2tp68IB/7YkkrsHAy14LqyguN0dHJAKHuDVONv9+o+WkBS7V0IIZR4mZKGMbNCAdqQCGEnTNXBfZrTlDbTFLLwCv9DnyHEM0hFQ676dbCNEXrNDtGwnQHnvLIk+A2XORWgqdPqLZ7ZXpYqbuLhWxXbmEPMZk334wQcfppspRbGNJPHoCP0vVS0o5LlUu+6HjMQgR+yn0lY+hDKp1btA9TPCrj1kt4V6VVNY5/K00Qex0GEgRpycsVS4yTaeNYQ95/46JRVQCd1MTJAde36IV4PG/jpEzhDavNnv/dns67OUW7SWgCTTaAQK2/MSf09ppfMDQu8OfQc2dzfoA+7jvUoWbu71Qc9Woo4E=
-  file: app/build/outputs/apk/app-debug.apk
+  file: app/build/outputs/apk/app-release.apk
   skip_cleanup: true
   on:
+    tags: true
     repo: YeungKC/Gank.io-for-Kotlin-Android
