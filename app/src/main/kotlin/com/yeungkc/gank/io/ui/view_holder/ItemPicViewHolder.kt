@@ -7,12 +7,12 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.yeungkc.gank.io.R
 import com.yeungkc.gank.io.databinding.ItemGankPicBinding
+import com.yeungkc.gank.io.model.DataLayer
 import com.yeungkc.gank.io.model.bean.AutoBean
 import com.yeungkc.gank.io.model.bean.Result
 import com.yeungkc.gank.io.ui.activity.DetailActivity
 import com.yeungkc.gank.io.ui.glide.module.CustomImageSizeModelGankStudio
 import org.jetbrains.anko.startActivity
-import java.text.SimpleDateFormat
 
 class ItemPicViewHolder(val parent: ViewGroup) : BaseViewHolder<AutoBean>(LayoutInflater.from(parent.context).inflate(R.layout.item_gank_pic, parent, false)) {
     var data: Result? = null
@@ -45,7 +45,7 @@ class ItemPicViewHolder(val parent: ViewGroup) : BaseViewHolder<AutoBean>(Layout
                         .into(bind.ivItem)
             }
 
-            bind.tvItem.text = SimpleDateFormat("yy\nMM/dd").format(publishedAt)
+            bind.tvItem.text = DataLayer.picDateFormat.format(publishedAt)
 
             bind.executePendingBindings()
         }

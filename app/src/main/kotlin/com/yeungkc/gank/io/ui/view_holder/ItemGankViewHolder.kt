@@ -12,11 +12,11 @@ import android.view.ViewGroup
 import com.yeungkc.gank.io.R
 import com.yeungkc.gank.io.databinding.ItemGankBinding
 import com.yeungkc.gank.io.extensions.getBitmap
+import com.yeungkc.gank.io.model.DataLayer
 import com.yeungkc.gank.io.model.bean.AutoBean
 import com.yeungkc.gank.io.model.bean.Result
 import com.yeungkc.gank.io.ui.chromium.ActionBroadcastReceiver
 import com.yeungkc.gank.io.ui.chromium.CustomTabsHelper
-import java.text.SimpleDateFormat
 
 class ItemGankViewHolder(parent: ViewGroup) : BaseViewHolder<AutoBean>(LayoutInflater.from(parent.context).inflate(R.layout.item_gank, parent, false)) {
     var data: Result? = null
@@ -57,7 +57,7 @@ class ItemGankViewHolder(parent: ViewGroup) : BaseViewHolder<AutoBean>(LayoutInf
 
         bind.title = des
         bind.who = context.getString(R.string.by, data.who?.trim())
-        bind.date = SimpleDateFormat("yy/MM/dd").format(data.publishedAt)
+        bind.date = DataLayer.simpleDateFormat.format(data.publishedAt)
 
         bind.executePendingBindings()
     }
