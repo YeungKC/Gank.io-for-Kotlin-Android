@@ -40,7 +40,10 @@ android {
     signingConfigs {
         releaseConfig {
             Properties signingProperties = new Properties()
-            signingProperties.load(rootProject.file("signing.properties").newDataInputStream())
+            def file = rootProject.file("signing.properties")
+            if (file != null) {
+                signingProperties.load(file.newDataInputStream())
+            }
             storeFile rootProject.file(signingProperties.get("STORE_FILE"))
             storePassword signingProperties.get("STORE_PASSWORD") ?: System.getenv("STORE_PASSWORD") ?: System.console()
             keyAlias signingProperties.get("KEY_ALIAS")?: System.getenv("KEY_ALIAS") ?: System.console()
